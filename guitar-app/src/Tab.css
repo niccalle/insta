@@ -1,6 +1,13 @@
+#Tab-container{
+    width: 70%;
+    overflow: auto;
+    white-space: nowrap;
+}
+
 .Tab-frame{
     border: 1px solid black;
     width: 100%;
+    overflow: auto;
 }
 
 .String{
@@ -12,4 +19,22 @@
 
 .string-container{
     height: auto;
+}
+
+div.scrollmenu {
+    background-color: #333;
+    /*overflow: auto;*/
+    white-space: nowrap;
+    text-align: left;
+}
+
+div.scrollmenu a {
+    display: inline-block;
+    color: white;
+    padding: 14px;
+    text-decoration: none;
+}
+
+.Whole-tab {
+    width: auto;
 }
