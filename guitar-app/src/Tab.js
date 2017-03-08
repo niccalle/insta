@@ -18,16 +18,28 @@ class String extends Component {
     // }
 }
 
+class Cell extends Component {
+    render() {
+        var color = this.props.active ? "green" : "#333";
+        var cellStyle = {"backgroundColor": color}
+        var i = parseInt(this.props.num, 10);
+        return (
+            <a href="#" style={cellStyle}>{i%4 + 1}</a>
+        )
+    }
+}
+
 class Tab extends Component {
-    constructor(props){
-        super(props);
-        this.state = {activeString: -1};
+    state = {
+        activeString: -1,
+        activeCell: -1
     }
 
     render() {
         var columns = [];
         for (var i=0; i < 100; i++) {
-            columns.push(<a href="#" key={i}>{i}</a>);
+            columns.push(<Cell key={i} num={i} active={i === this.state.activeCell}></Cell>)
+            //columns.push(<a href="#" key={i}>{i%4 + 1}</a>);
         }
         return (
             <div style={{"display":"inline-block"}} className="Whole-tab" id="whole">
@@ -41,6 +53,7 @@ class Tab extends Component {
                     {this.renderString(4)}
                     {this.renderString(5)}
                     {this.renderString(6)}
+                    <div className="fret">1</div>
                 </div>
 
             </div>
@@ -53,12 +66,15 @@ class Tab extends Component {
 
     //This binds the click to the TAB component
     handleClick = (i) => (e) => {
-        // document.getElementById("Tab-container").scrollLeft
-        // THIS GIVES US HOW FAR WE HAVE SCROLLED 
-        console.log("Client X" + e.clientX);
-        console.log("Screen X" + e.screenXc);
-        //document.getElementById("Tab-container").style.
-        this.setState({activeString: i});
+        var scrolled = document.getElementById("Tab-container").scrollLeft
+        // THIS GIVES US HOW FAR WE HAVE SCROLLED
+        var leftMar = window.getComputedStyle(document.getElementById("Tab-container"), null).getPropertyValue('left')
+        leftMar = parseInt(leftMar, 10)
+        var relativeX = scrolled + e.clientX - leftMar;
+
+        //The particular cell that we've clicked
+        var cellNum = Math.floor(relativeX / 36.34); //TODO: Make this shit reliable
+        this.setState({activeString: i, activeCell: cellNum});
     }
 
 }
