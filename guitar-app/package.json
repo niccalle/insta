@@ -6,10 +6,12 @@
     "react-scripts": "0.8.5"
   },
   "dependencies": {
+    "html-to-react": "^1.2.4",
     "react": "^15.4.2",
     "react-canvas-component": "^0.1.1",
     "react-dom": "^15.4.2",
-    "react-line": "^1.0.2"
+    "react-line": "^1.0.2",
+    "react-player": "^0.14.3"
   },
   "scripts": {
     "start": "react-scripts start",

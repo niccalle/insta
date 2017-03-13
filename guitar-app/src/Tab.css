@@ -2,7 +2,8 @@
     position: fixed;
     left: 15%;
     width: 70%;
-    overflow: auto;
+    overflow-x: auto;
+    overflow-y: scroll;
     white-space: nowrap;
 }
 
